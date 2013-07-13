@@ -1,25 +1,19 @@
-var request = require('request'),
-    commander = require('commander');
+var commander = require('commander'),
+    JiraApi = require('jira').JiraApi;
 
 var userConf = require('./config'),
     show = require('./lib/show'),
     create = require('./lib/create'),
     list = require('./lib/list');
 
-var config = {
-    auth: {
-        user: userConf.user,
-        pass: userConf.password
-    },
-    rootAPI: userConf.apiUrl
-};
+var jira = new JiraApi(userConf.protocol, userConf.host, userConf.port, userConf.user, userConf.password, '2');
 
 commander
     .command('show <id>')
     .description('show an issue by id')
     .option('id', 'issue id')
     .action(function (id) {
-        show(config, { id: id });
+        show(jira, { id: id });
     });
 
 commander
@@ -61,7 +55,7 @@ commander
     .option('-s, --status <status o|c|r|i|open|closed|resolved|inprogress>', "Filter list by status")
     .option('-f, --format', "format as table")
     .action(function (args) {
-        list(config, args);
+        list(jira, args);
     });
 commander
     .command('create')
@@ -73,7 +67,7 @@ commander
     .option('-d, --desc <desription>', "description")
     .option('-t, --type <issue type>', "name of issue type")
     .action(function (args) {
-        create(config, args);
+        create(jira, args);
     });
 
 commander.parse(process.argv);
