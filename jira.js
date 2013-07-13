@@ -4,7 +4,10 @@ var commander = require('commander'),
 var userConf = require('./config'),
     show = require('./lib/show'),
     create = require('./lib/create'),
-    list = require('./lib/list');
+    list = require('./lib/list'),
+    projects = require('./lib/projects'),
+    issuetypes = require('./lib/issuetypes'),
+    comment = require('./lib/comment');
 
 var jira = new JiraApi(userConf.protocol, userConf.host, userConf.port, userConf.user, userConf.password, '2');
 
@@ -68,6 +71,28 @@ commander
     .option('-t, --type <issue type>', "name of issue type")
     .action(function (args) {
         create(jira, args);
+    });
+commander
+    .command('projects')
+    .description('list all projects')
+    .action(function (args) {
+        projects(jira, args);
+    });
+commander
+    .command('issuetypes')
+    .description('list all issue types')
+    .action(function (args) {
+        issuetypes(jira, args);
+    });
+commander
+    .command('comment <id> <text>')
+    .option("id", "issue id")
+    .option("text", "comment text")
+    .action(function (id, text) {
+        comment(jira, {
+            id: id,
+            comment: text
+        });
     });
 
 commander.parse(process.argv);
