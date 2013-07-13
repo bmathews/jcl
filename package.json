@@ -17,7 +17,7 @@
     "url": "https://github.com/moonsspoon/jira-cli.git"
   },
   "author": "",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/moonsspoon/jira-cli/issues"
   }
