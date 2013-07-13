@@ -8,6 +8,7 @@ var userConf = require('./config'),
     projects = require('./lib/projects'),
     issuetypes = require('./lib/issuetypes'),
     comment = require('./lib/comment'),
+    del = require('./lib/del'),
     assign = require('./lib/assign');
 
 var jira = new JiraApi(userConf.protocol, userConf.host, userConf.port, userConf.user, userConf.password, '2');
@@ -56,27 +57,27 @@ commander
 
 commander
     .command('close <id>')
-    .description('close an issue by id')
+    .description('TODO close an issue by id')
     .action(function (args) {
         console.log(args);
     });
 
 commander
     .command('resolve <id> ')
-    .description('resolve an issue by id')
+    .description('TODO resolve an issue by id')
     .action(function (args) {
         console.log(args);
     });
 
 commander
     .command('start <id>')
-    .description('set an issue to in progress by id')
+    .description('TODO set an issue to in progress by id')
     .action(function (args) {
         console.log(args);
     });
 commander
     .command('stop <id>')
-    .description("set an issue to open by id")
+    .description("TODO set an issue to open by id")
     .action(function (args) {
         console.log(args);
     });
@@ -95,6 +96,13 @@ commander.command('assign <id> <user>')
         assign(jira, {
             id: id,
             user: user
+        });
+    });
+commander.command('delete <id>')
+    .description('delete an issue')
+    .action(function (id) {
+        del(jira, {
+            id: id
         });
     });
 
