@@ -11,6 +11,14 @@ git clone https://github.com/moonsspoon/jira-cli.git
 ```
 npm install
 ```
+edit `config.js`
+```
+{
+  apiUrl: 'https://jira.company.com/rest/2/api/',
+  user: 'username',
+  password: 'password'
+}
+```
 ```
 node jira --help
 ```
