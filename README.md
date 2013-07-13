@@ -14,9 +14,11 @@ npm install
 edit `config.js`
 ```
 {
-  apiUrl: 'https://jira.company.com/rest/api/2/',
-  user: 'username',
-  password: 'password'
+    protocol: 'https',
+    host: "jira.company.com/",
+    port: null,
+    user: 'username',
+    password: 'password'
 }
 ```
 ```
