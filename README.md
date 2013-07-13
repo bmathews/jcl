@@ -62,3 +62,6 @@ Usage: list [options]
     -d, --desc <desription>  description
     -t, --type <issue type>  name of issue type
 ```
+
+### license
+MIT
