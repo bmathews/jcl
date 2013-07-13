@@ -7,47 +7,22 @@ var userConf = require('./config'),
     list = require('./lib/list'),
     projects = require('./lib/projects'),
     issuetypes = require('./lib/issuetypes'),
-    comment = require('./lib/comment');
+    comment = require('./lib/comment'),
+    assign = require('./lib/assign');
 
 var jira = new JiraApi(userConf.protocol, userConf.host, userConf.port, userConf.user, userConf.password, '2');
 
 commander
-    .command('show <id>')
-    .description('show an issue by id')
-    .option('id', 'issue id')
-    .action(function (id) {
-        show(jira, { id: id });
-    });
-
-commander
-    .command('close <id>')
-    .description('close an issue by id')
-    .option('id', 'issue id')
+    .command('projects')
+    .description('list all projects')
     .action(function (args) {
-        console.log(args);
-    });
-
-commander
-    .command('resolve <id> ')
-    .description('resolve an issue by id')
-    .option('id', 'issue id')
-    .action(function (args) {
-        console.log(args);
-    });
-
-commander
-    .command('start <id>')
-    .description('set an issue to in progress by id')
-    .option('id', 'issue id')
-    .action(function (args) {
-        console.log(args);
+        projects(jira, args);
     });
 commander
-    .command('stop <id>')
-    .description("set an issue to open by id")
-    .option('id', 'issue id')
+    .command('issuetypes')
+    .description('list all issue types')
     .action(function (args) {
-        console.log(args);
+        issuetypes(jira, args);
     });
 commander
     .command('list')
@@ -73,25 +48,53 @@ commander
         create(jira, args);
     });
 commander
-    .command('projects')
-    .description('list all projects')
+    .command('show <id>')
+    .description('show an issue by id')
+    .action(function (id) {
+        show(jira, { id: id });
+    });
+
+commander
+    .command('close <id>')
+    .description('close an issue by id')
     .action(function (args) {
-        projects(jira, args);
+        console.log(args);
+    });
+
+commander
+    .command('resolve <id> ')
+    .description('resolve an issue by id')
+    .action(function (args) {
+        console.log(args);
+    });
+
+commander
+    .command('start <id>')
+    .description('set an issue to in progress by id')
+    .action(function (args) {
+        console.log(args);
     });
 commander
-    .command('issuetypes')
-    .description('list all issue types')
+    .command('stop <id>')
+    .description("set an issue to open by id")
     .action(function (args) {
-        issuetypes(jira, args);
+        console.log(args);
     });
 commander
     .command('comment <id> <text>')
-    .option("id", "issue id")
-    .option("text", "comment text")
+    .description('comment on an issue')
     .action(function (id, text) {
         comment(jira, {
             id: id,
             comment: text
+        });
+    });
+commander.command('assign <id> <user>')
+    .description('assign a user to an issue')
+    .action(function (id, user) {
+        assign(jira, {
+            id: id,
+            user: user
         });
     });
 
