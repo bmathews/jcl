@@ -25,6 +25,50 @@ edit `config.js`
 node jira --help
 ```
 
+### example usage
+
+#### jira list --assignee \<user\> --project \<name\>
+```
+$ jira list -a brian.mathews -p BE
+
+BE-72    O   Add BTI Logo to Website
+BE-58	R   Create Contact UI Documentation
+BE-56	C   Create "Add Member" dialog design for Team UI
+BE-55	C   Create "Organization Search" dialog design for Team UI
+BE-54	R   Create Team UI Documentation
+BE-53	R   Create User UI Documentation
+BE-22	R   Style Team UI
+BE-18	R   Style User UI
+```
+#### jira show \<id\>
+```
+$ jira show BE-54
+
+Assignee:      None
+Creator:       Brian Mathews
+
+Status:        Resolved
+Priority:      Major
+Type:          Task
+Components:    Web
+
+Summary:
+Create Team UI Documentation
+
+Description:
+Create mockups/documentation for team screen to guide development.
+```
+#### jira start \<id\>
+```
+$ jira start BE-54
+Success
+```
+#### jira resolve \<id\>
+```
+$ jira resolve BE-54
+Success
+```
+
 ### jira --help
 ```
 Commands:
