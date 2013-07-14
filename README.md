@@ -27,17 +27,23 @@ node jira --help
 
 ### jira --help
 ```
-Usage: jira [options] [command]
+Commands:
 
-  Commands:
+    projects               list all projects
+    issuetypes             list all issue types
+
+    list [options]         list issues
+    create [options]       create an issue
 
     show <id>              show an issue by id
     close <id>             close an issue by id
     resolve <id>           resolve an issue by id
     start <id>             set an issue to in progress by id
     stop <id>              set an issue to open by id
-    list [options]         list issues
-    create [options]       create an issue
+    delete <id>            delete an issue by id
+
+    comment <id> <text>    comment on an issue
+    assign <id> <user>     assign a user to an issue
 
   Options:
 
@@ -50,17 +56,16 @@ Usage: list [options]
 
   Options:
 
-    -h, --help                                                    output usage information
-    -a, --assignee <user>                                         Filter list by assignee
-    -p, --project <project>                                       Filter list by project
-    -c, --creator <user>                                          Filter list by creator
-    -s, --status <status o|c|r|i|open|closed|resolved|inprogress> Filter list by status
-    -f, --format                                                  format as table 
+    -h, --help                      output usage information
+    -a, --assignee <user>           filter list by assignee
+    -p, --project <project>         filter list by project
+    -c, --creator <user>            filter list by creator
+    -s, --status <o|c|r|i>          filter list by status
+    -f, --format                    format as table
 ```
-
 ### jira create --help
 ```
-  Usage: create [options]
+Usage: create [options]
 
   Options:
 
