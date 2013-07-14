@@ -32,7 +32,7 @@ commander
     .option('-a, --assignee <user>', "Filter list by assignee")
     .option('-p, --project <project>', "Filter list by project")
     .option('-c, --creator <user>', "Filter list by creator")
-    .option('-s, --status <status o|c|r|i|open|closed|resolved|inprogress>', "Filter list by status")
+    .option('-s, --status <o|c|r|i>', "Filter list by status")
     .option('-f, --format', "format as table")
     .action(function (args) {
         list(jira, args);
@@ -78,7 +78,7 @@ commander
     });
 commander
     .command('stop <id>')
-    .description("set an issue to open by id\n")
+    .description("set an issue to open by id")
     .action(function (args) {
         transition(jira, { id: id, transitionId: 301 });
     });
