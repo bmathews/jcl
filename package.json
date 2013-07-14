@@ -4,9 +4,9 @@
   "description": "jira-cli ========",
   "main": "jira.js",
   "dependencies": {
-    "cli-table": "~0.2.0",
     "commander": "~1.3.0",
-    "jira": "~0.6.0"
+    "jira": "~0.6.0",
+    "pad": "0.0.4"
   },
   "devDependencies": {},
   "scripts": {

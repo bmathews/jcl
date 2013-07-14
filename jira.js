@@ -33,7 +33,6 @@ commander
     .option('-p, --project <project>', "Filter list by project")
     .option('-c, --creator <user>', "Filter list by creator")
     .option('-s, --status <o|c|r|i>', "Filter list by status")
-    .option('-f, --format', "format as table")
     .action(function (args) {
         list(jira, args);
     });
