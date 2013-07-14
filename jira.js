@@ -9,6 +9,7 @@ var userConf = require('./config'),
     issuetypes = require('./lib/issuetypes'),
     comment = require('./lib/comment'),
     del = require('./lib/del'),
+    start = require('./lib/start'),
     assign = require('./lib/assign');
 
 var jira = new JiraApi(userConf.protocol, userConf.host, userConf.port, userConf.user, userConf.password, '2');
@@ -72,8 +73,8 @@ commander
 commander
     .command('start <id>')
     .description('TODO set an issue to in progress by id')
-    .action(function (args) {
-        console.log(args);
+    .action(function (id) {
+        start(jira, { id: id });
     });
 commander
     .command('stop <id>')
