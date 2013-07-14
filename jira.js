@@ -9,7 +9,7 @@ var userConf = require('./config'),
     issuetypes = require('./lib/issuetypes'),
     comment = require('./lib/comment'),
     del = require('./lib/del'),
-    start = require('./lib/start'),
+    transition = require('./lib/transition'),
     assign = require('./lib/assign');
 
 var jira = new JiraApi(userConf.protocol, userConf.host, userConf.port, userConf.user, userConf.password, '2');
@@ -22,7 +22,7 @@ commander
     });
 commander
     .command('issuetypes')
-    .description('list all issue types')
+    .description('list all issue types\n')
     .action(function (args) {
         issuetypes(jira, args);
     });
@@ -39,7 +39,7 @@ commander
     });
 commander
     .command('create')
-    .description('create an issue')
+    .description('create an issue\n')
     .option('-i, --interactive', "interactive mode")
     .option('-a, --assignee <user>', "assignee")
     .option('-p, --project <project>', "project")
@@ -58,29 +58,36 @@ commander
 
 commander
     .command('close <id>')
-    .description('TODO close an issue by id')
+    .description('close an issue by id')
     .action(function (args) {
-        console.log(args);
+        transition(jira, { id: id, transitionId: 2 });
     });
 
 commander
     .command('resolve <id> ')
-    .description('TODO resolve an issue by id')
+    .description('resolve an issue by id')
     .action(function (args) {
-        console.log(args);
+        transition(jira, { id: id, transitionId: 3 });
     });
 
 commander
     .command('start <id>')
-    .description('TODO set an issue to in progress by id')
+    .description('set an issue to in progress by id')
     .action(function (id) {
-        start(jira, { id: id });
+        transition(jira, { id: id, transitionId: 4 });
     });
 commander
     .command('stop <id>')
-    .description("TODO set an issue to open by id")
+    .description("set an issue to open by id\n")
     .action(function (args) {
-        console.log(args);
+        transition(jira, { id: id, transitionId: 301 });
+    });
+commander.command('delete <id>')
+    .description('delete an issue by id\n')
+    .action(function (id) {
+        del(jira, {
+            id: id
+        });
     });
 commander
     .command('comment <id> <text>')
@@ -97,13 +104,6 @@ commander.command('assign <id> <user>')
         assign(jira, {
             id: id,
             user: user
-        });
-    });
-commander.command('delete <id>')
-    .description('delete an issue')
-    .action(function (id) {
-        del(jira, {
-            id: id
         });
     });
 
