@@ -15,7 +15,9 @@ var show = require('./lib/show'),
     transition = require('./lib/transition'),
     assign = require('./lib/assign');
 
-require('./lib/config')(function (config) {
+var appName = basename(process.argv[1]);
+
+var configManager = require('./lib/config')(function (config) {
     var jira = new JiraApi(config.protocol, config.host, config.port, config.user, config.password, '2');
     commander
         .command('me')
@@ -40,7 +42,7 @@ require('./lib/config')(function (config) {
         });
     commander
         .command('list')
-        .description('list issues       ('+ basename(process.argv[1]) +' list --help)')
+        .description('list issues       ('+ appName +' list --help)')
         .option('-o, --open', "show only open issues ")
         .option('-u, --unresolved', "show only unresolved issues (open, in progress, reopened")
         .option('-a, --assignee <user>', "filter list by assignee")
@@ -52,7 +54,7 @@ require('./lib/config')(function (config) {
         });
     commander
         .command('create')
-        .description('create an issue   ('+ basename(process.argv[1]) +' create --help)\n')
+        .description('create an issue   ('+ appName +' create --help)\n')
         .option('-i, --interactive', "interactive mode")
         .option('-a, --assignee <user>', "assignee")
         .option('-p, --project <project>', "project")
@@ -159,8 +161,8 @@ require('./lib/config')(function (config) {
     commander.on('--help', function(){
         console.log('  Shortcuts:');
         console.log('');
-        console.log('    $ ' + basename(process.argv[1]) + ' <id>             shortcut to show issue by id');
-        console.log('    $ ' + basename(process.argv[1]) + '                  shortcut to show unresolved issues assigned to you');
+        console.log('    $ ' + appName + ' <id>             shortcut to show issue by id');
+        console.log('    $ ' + appName + '                  shortcut to show unresolved issues assigned to you');
         console.log('');
     });
 
