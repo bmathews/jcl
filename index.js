@@ -82,14 +82,14 @@ var configManager = require('./lib/config')(function (config) {
     commander
         .command('close <id>')
         .description('close an issue by id')
-        .action(function (args) {
+        .action(function (id) {
             transition(jira, { id: id, transitionId: 2 });
         });
     commander
         .command('resolve <id> ')
         .description('resolve an issue by id')
-        .action(function (args) {
-            transition(jira, { id: id, transitionId: 3 });
+        .action(function (id) {
+            transition(jira, { id: id, transitionId: 5 });
         });
     commander
         .command('start <id>')
