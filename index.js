@@ -56,7 +56,7 @@ var configManager = require('./lib/config')(function (config) {
         .option('-p, --project <project>', "filter list by project")
         .option('-r, --reporter <user>', "filter list by reporter")
         .option('-s, --status <o|c|r|i>', "filter list by status")
-        .option('-q, --query', "search summary/description/comment fields")
+        .option('-q, --query <query>', "search summary/description/comment fields")
         .action(function (args) {
             list(jira, args);
         });
