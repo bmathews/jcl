@@ -1,56 +1,84 @@
 jira-cli
 ========
 
-nodejs powered jira cli
+A full featured Jira cli powered by node.
 
-### install
+## install
 
 ```
-git clone https://github.com/moonsspoon/jira-cli.git
+npm install jcl -g
 ```
+## jcl --help
 ```
-npm install
-```
-edit `config.js`
-```
-{
-    protocol: 'https',
-    host: "jira.company.com/",
-    port: null,
-    user: 'username',
-    password: 'password'
-}
-```
-```
-node jira --help
-```
+Usage: jcl [options] [command]
 
-### example usage
+  Commands:
 
-#### jira list --assignee \<user\> --project \<name\>
-```
-$ jira list -a brian.mathews -p BE
+    me                     all unresolved issues assigned to you
 
-BE-72    O   Add BTI Logo to Website
-BE-58	R   Create Contact UI Documentation
-BE-56	C   Create "Add Member" dialog design for Team UI
-BE-55	C   Create "Organization Search" dialog design for Team UI
-BE-54	R   Create Team UI Documentation
-BE-53	R   Create User UI Documentation
-BE-22	R   Style Team UI
-BE-18	R   Style User UI
-```
-#### jira show \<id\>
-```
-$ jira show BE-54
+    projects               list all projects
+    issuetypes             list all issue types
 
-Assignee:      None
-Creator:       Brian Mathews
+    list [options]         list issues       (jcl list --help)
+    create [options]       create an issue   (jcl create --help)
+
+    show <id>              show an issue by id
+    take <id>              assign an issue to yourself
+    close <id>             close an issue by id
+    resolve <id>           resolve an issue by id
+    start <id>             assign to yourself and set an issue to in progress
+    stop <id>              unassign and set an issue to open
+    delete <id>            delete an issue by id
+
+    comments <id>          view comments on an issue
+    comment <id> <text>    comment on an issue
+
+    assign <id> <user>     assign a user to an issue
+    unassign <id>          unassign a user from an issue
+
+  Options:
+
+    -h, --help  output usage information
+
+  Shortcuts:
+
+    $ jcl <id>             show issue by id
+    $ jcl                  show unresolved issues assigned to you
+```
+## example usage
+
+#### jcl list --assignee \<user\> --project \<name\>
+```
+$ jcl list -a brian.mathews -p BE
+
+ID      Status       Summary
+
+BE-58   Resolved     Create Contact UI Documentation
+BE-56   Closed       Create "Add Member" dialog design for Team UI
+BE-55   Closed       Create "Organization Search" dialog design for Team UI
+BE-54   Resolved     Create Team UI Documentation
+BE-53   Resolved     Create User UI Documentation
+BE-22   Resolved     Style Team UI
+BE-18   Resolved     Style User UI
+
+(use "jcl show <id>"  to view an issue)
+(use "jcl take <id>"  to assign an issue to yourself)
+(use "jcl start <id>" to set an issue to in progress and assign to yourself)
+(use "jcl list -h" for list options)
+```
+#### jcl show \<id\>
+```
+$ jcl show BE-54
+
+Assignee:      Brian Mathews
+Reporter:      Brian Mathews
 
 Status:        Resolved
 Priority:      Major
 Type:          Task
 Components:    Web
+Labels:        None
+Comments:      0
 
 Summary:
 Create Team UI Documentation
@@ -58,54 +86,32 @@ Create Team UI Documentation
 Description:
 Create mockups/documentation for team screen to guide development.
 ```
-#### jira start \<id\>
+#### jcl start \<id\>
 ```
-$ jira start BE-54
+$ jcl start BE-54
 Success
 ```
-#### jira resolve \<id\>
+#### jcl resolve \<id\>
 ```
-$ jira resolve BE-54
+$ jcl resolve BE-54
 Success
 ```
 
-### jira --help
-```
-Commands:
 
-    projects               list all projects
-    issuetypes             list all issue types
 
-    list [options]         list issues
-    create [options]       create an issue
-
-    show <id>              show an issue by id
-    close <id>             close an issue by id
-    resolve <id>           resolve an issue by id
-    start <id>             set an issue to in progress by id
-    stop <id>              set an issue to open by id
-    delete <id>            delete an issue by id
-
-    comment <id> <text>    comment on an issue
-    assign <id> <user>     assign a user to an issue
-
-  Options:
-
-    -h, --help  output usage information
-```
-
-### jira list --help
+### jcl list --help
 ```
 Usage: list [options]
 
   Options:
 
-    -h, --help                      output usage information
-    -a, --assignee <user>           filter list by assignee
-    -p, --project <project>         filter list by project
-    -c, --creator <user>            filter list by creator
-    -s, --status <o|c|r|i>          filter list by status
-    -f, --format                    format as table
+    -h, --help               output usage information
+    -o, --open               show only open issues
+    -u, --unresolved         show only unresolved issues (open, in progress, reopened
+    -a, --assignee <user>    filter list by assignee
+    -p, --project <project>  filter list by project
+    -r, --reporter <user>    filter list by reporter
+    -s, --status <o|c|r|i>   filter list by status
 ```
 ### jira create --help
 ```
