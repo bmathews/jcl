@@ -56,7 +56,7 @@ var configManager = require('./lib/config')(function (config) {
         .option('-p, --project <project>', "filter list by project")
         .option('-r, --reporter <user>', "filter list by reporter")
         .option('-s, --status <o|c|r|i>', "filter list by status")
-        .option('-q, --query <o|c|r|i>', "search summary/description/comment fields")
+        .option('-q, --query', "search summary/description/comment fields")
         .action(function (args) {
             list(jira, args);
         });
@@ -103,8 +103,8 @@ var configManager = require('./lib/config')(function (config) {
         .command('start <id>')
         .description('assign to yourself and set an issue to in progress')
         .action(function (id) {
-            transition(jira, { id: id, transitionId: 4 }, function () {
-                assign(jira, { id: id, user: config.user });
+            assign(jira, { id: id, user: config.user }, function () {
+                transition(jira, { id: id, transitionId: 4 });
             });
         });
     commander
