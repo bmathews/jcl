@@ -1,12 +1,12 @@
 {
-  "name": "jira",
-  "version": "0.0.0",
+  "name": "jcl",
+  "version": "0.0.1",
   "description": "A command line interface for interacting with jira issues.",
   "main": "index.js",
   "dependencies": {
     "commander": "~1.3.0",
     "jira": "~0.6.0",
-    "pad": "0.0.4"
+    "pad": "~0.0.4"
   },
   "devDependencies": {},
   "scripts": {
@@ -22,6 +22,6 @@
     "url": "https://github.com/moonsspoon/jira-cli/issues"
   },
   "bin": {
-    "jira": "./bin/jira"
+    "jcl": "./bin/jcl"
   }
 }
