@@ -1,7 +1,7 @@
 {
   "name": "jcl",
   "version": "0.0.2",
-  "description": "A command line interface for interacting with jira issues.",
+  "description": "A simple, robust command line interface for interacting with jira issues.",
   "main": "index.js",
   "dependencies": {
     "commander": "~1.3.0",
@@ -14,12 +14,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/moonsspoon/jira-cli.git"
+    "url": "https://github.com/moonsspoon/jcl.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moonsspoon/jira-cli/issues"
+    "url": "https://github.com/moonsspoon/jcl/issues"
   },
   "bin": {
     "jcl": "./bin/jcl"

@@ -1,7 +1,7 @@
 jira-cli
 ========
 
-A full featured Jira cli powered by node.
+A simple, robust command line interface for interacting with jira issues.
 
 ## install
 
