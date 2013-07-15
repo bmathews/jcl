@@ -45,7 +45,7 @@ require('./lib/config')(function (config) {
         .option('-u, --unresolved', "show only unresolved issues (open, in progress, reopened")
         .option('-a, --assignee <user>', "filter list by assignee")
         .option('-p, --project <project>', "filter list by project")
-        .option('-c, --creator <user>', "filter list by creator")
+        .option('-r, --reporter <user>', "filter list by reporter")
         .option('-s, --status <o|c|r|i>', "filter list by status")
         .action(function (args) {
             list(jira, args);
@@ -114,7 +114,7 @@ require('./lib/config')(function (config) {
         });
     commander
         .command('comments <id>')
-        .description('view comments on an id')
+        .description('view comments on an issue')
         .action(function (id) {
             comments(jira, {
                 id: id
@@ -157,10 +157,10 @@ require('./lib/config')(function (config) {
         });
 
     commander.on('--help', function(){
-        console.log('  Other:');
+        console.log('  Shortcuts:');
         console.log('');
-        console.log('    $ custom-help --help');
-        console.log('    $ custom-help -h');
+        console.log('    $ ' + basename(process.argv[1]) + ' <id>             shortcut to show issue by id');
+        console.log('    $ ' + basename(process.argv[1]) + '                  shortcut to show unresolved issues assigned to you');
         console.log('');
     });
 
