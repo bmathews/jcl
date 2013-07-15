@@ -99,7 +99,7 @@ Success
 
 
 
-### jcl list --help
+#### jcl list --help
 ```
 Usage: list [options]
 
@@ -113,7 +113,7 @@ Usage: list [options]
     -r, --reporter <user>    filter list by reporter
     -s, --status <o|c|r|i>   filter list by status
 ```
-### jira create --help
+#### jcl create --help
 ```
 Usage: create [options]
 
