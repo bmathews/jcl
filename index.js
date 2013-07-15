@@ -8,9 +8,10 @@ var show = require('./lib/show'),
     create = require('./lib/create'),
     list = require('./lib/list'),
     projects = require('./lib/projects'),
-    issuetypes = require('./lib/issuetypes'),
+    issueTypes = require('./lib/issueTypes'),
     comment = require('./lib/comment'),
     comments = require('./lib/comments'),
+    linkTypes = require('./lib/linkTypes'),
     del = require('./lib/del'),
     transition = require('./lib/transition'),
     assign = require('./lib/assign');
@@ -38,7 +39,13 @@ var configManager = require('./lib/config')(function (config) {
         .command('issuetypes')
         .description('list all issue types\n')
         .action(function (args) {
-            issuetypes(jira, args);
+            issueTypes(jira, args);
+        });
+    commander
+        .command('linktypes')
+        .description('list all issue link types\n')
+        .action(function (args) {
+            linkTypes(jira, args);
         });
     commander
         .command('list')
@@ -49,6 +56,7 @@ var configManager = require('./lib/config')(function (config) {
         .option('-p, --project <project>', "filter list by project")
         .option('-r, --reporter <user>', "filter list by reporter")
         .option('-s, --status <o|c|r|i>', "filter list by status")
+        .option('-q, --query <o|c|r|i>', "search summary/description/comment fields")
         .action(function (args) {
             list(jira, args);
         });
