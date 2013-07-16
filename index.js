@@ -153,7 +153,7 @@ var configManager = require('./lib/config')(function (config) {
             });
         });
     commander
-        .command('link <ida> <idb')
+        .command('link <ida> <idb>')
         .description('link two issues')
         .action(function (ida, idb) {
             link(jira, {
