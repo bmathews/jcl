@@ -11,8 +11,8 @@ var show = require('./lib/show'),
     issueTypes = require('./lib/issueTypes'),
     comment = require('./lib/comment'),
     comments = require('./lib/comments'),
-    linkTypes = require('./lib/linkTypes'),
     del = require('./lib/del'),
+    link = require('./lib/link'),
     transition = require('./lib/transition'),
     assign = require('./lib/assign');
 
@@ -40,12 +40,6 @@ var configManager = require('./lib/config')(function (config) {
         .description('list all issue types\n')
         .action(function (args) {
             issueTypes(jira, args);
-        });
-    commander
-        .command('linktypes')
-        .description('list all issue link types\n')
-        .action(function (args) {
-            linkTypes(jira, args);
         });
     commander
         .command('list')
@@ -158,7 +152,15 @@ var configManager = require('./lib/config')(function (config) {
                 user: null
             });
         });
-
+    commander
+        .command('link <ida> <idb')
+        .description('link two issues')
+        .action(function (ida, idb) {
+            link(jira, {
+                ida: ida,
+                idb: idb
+            });
+        });
     commander
         .command('* <id>')
         .description('show an issue by id')
