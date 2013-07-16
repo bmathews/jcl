@@ -36,14 +36,17 @@ Usage: jcl [options] [command]
     assign <id> <user>     assign a user to an issue
     unassign <id>          unassign a user from an issue
 
+    link <ida> <idb>       link two issues
+    * <id>                 show an issue by id
+
   Options:
 
     -h, --help  output usage information
 
   Shortcuts:
 
-    $ jcl <id>             show issue by id
-    $ jcl                  show unresolved issues assigned to you
+    $ jcl <id>             shortcut to show issue by id
+    $ jcl                  shortcut to show unresolved issues assigned to you
 ```
 ## example usage
 
@@ -78,7 +81,8 @@ Priority:      Major
 Type:          Task
 Components:    Web
 Labels:        None
-Comments:      0
+Comments:      1
+Links:         BE-105 blocks BE-43
 
 Summary:
 Create Team UI Documentation
