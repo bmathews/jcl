@@ -116,6 +116,7 @@ Usage: list [options]
     -p, --project <project>  filter list by project
     -r, --reporter <user>    filter list by reporter
     -s, --status <o|c|r|i>   filter list by status
+    -q, --query <query>      search summary/description/comment fields
 ```
 #### jcl create --help
 ```
