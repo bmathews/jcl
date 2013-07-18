@@ -3,6 +3,8 @@ jira-cli
 
 A simple, robust command line interface for interacting with jira issues.
 
+![](https://nodei.co/npm/jcl.png?downloads=true&stars=true)
+
 ## install
 
 ```
